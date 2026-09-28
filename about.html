@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — My Store</title>
+<meta name="description" content="Learn more about My Store, our mission, and why we offer Cash on Delivery to make online shopping simple and trustworthy.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="announce-bar">Cash on Delivery Available Nationwide — Pay When You Receive Your Order</div>
+  <div class="nav-wrap">
+    <a href="index.html" class="logo" id="logo-link">My Store</a>
+    <form class="nav-search" id="nav-search-form" role="search">
+      <input type="text" id="nav-search-input" placeholder="Search products..." aria-label="Search products">
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-link">🛒 Cart <span class="cart-count" id="cart-count">0</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container"><h1>About Us</h1></div>
+</div>
+
+<main class="container section prose" style="max-width:760px">
+  <p>Welcome to <strong data-cfg="storeName">My Store</strong> — a place built around one simple idea: online shopping should feel safe, easy, and honest. We know that trying a new online store can feel risky, which is why we made Cash on Delivery our only payment method. You get to see and check your order before you pay a single rupee.</p>
+
+  <h2>Our Story</h2>
+  <p>We started with a small selection of everyday products that we genuinely believed in, and a promise to keep things simple: clear pricing, honest product descriptions, and real customer support — not a chatbot, a real person on WhatsApp.</p>
+
+  <h2>Why Cash on Delivery?</h2>
+  <p>Many of our customers are shopping online for the first time, or simply prefer not to share card details on the internet. Cash on Delivery removes that worry entirely. You order, we deliver, you inspect, you pay. No surprises.</p>
+
+  <h2>Our Promise</h2>
+  <ul>
+    <li>Quality products at fair, transparent prices</li>
+    <li>Fast, reliable delivery across the country</li>
+    <li>Friendly support available on WhatsApp and phone</li>
+    <li>Easy returns if something isn't right</li>
+  </ul>
+
+  <h2>Get In Touch</h2>
+  <p>Have a question before you order? Message us anytime on WhatsApp or visit our <a href="contact.html" style="color:var(--color-primary); font-weight:600">Contact page</a> — we're happy to help.</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4 data-cfg="storeName">My Store</h4>
+        <p>Quality products, delivered to your door with Cash on Delivery — pay only when you receive your order.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul class="footer-links">
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="index.html#featured">Featured</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="shipping-info.html">Shipping Info</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="footer-year"></span> <span data-cfg="storeName">My Store</span>. All rights reserved.
+    </div>
+  </div>
+</footer>
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

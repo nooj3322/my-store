@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — My Store</title>
+<meta name="description" content="Complete your order with Cash on Delivery. No online payment required.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="announce-bar">Cash on Delivery Available Nationwide — Pay When You Receive Your Order</div>
+  <div class="nav-wrap">
+    <a href="index.html" class="logo" id="logo-link">My Store</a>
+    <form class="nav-search" id="nav-search-form" role="search">
+      <input type="text" id="nav-search-input" placeholder="Search products..." aria-label="Search products">
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-link">🛒 Cart <span class="cart-count" id="cart-count">0</span></a>
+    </nav>
+  </div>
+</header>
+
+<main class="container section">
+  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="cart.html">Cart</a> / <span>Checkout</span></div>
+  <h1>Checkout</h1>
+  <div id="checkout-wrapper" style="margin-top:20px">
+    <p class="loading-text">Loading…</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      &copy; <span id="footer-year"></span> <span data-cfg="storeName">My Store</span>. All rights reserved.
+    </div>
+  </div>
+</footer>
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+<div class="toast" id="toast"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

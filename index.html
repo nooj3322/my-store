@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Store — Quality Products, Cash on Delivery</title>
+<meta name="description" content="Shop quality products online with easy Cash on Delivery. No online payment needed — pay when your order arrives at your door.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="announce-bar">Cash on Delivery Available Nationwide — Pay When You Receive Your Order</div>
+  <div class="nav-wrap">
+    <a href="index.html" class="logo" id="logo-link">My Store</a>
+    <form class="nav-search" id="nav-search-form" role="search">
+      <input type="text" id="nav-search-input" placeholder="Search products..." aria-label="Search products">
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-link">🛒 Cart <span class="cart-count" id="cart-count">0</span></a>
+    </nav>
+  </div>
+  <div class="category-strip">
+    <div class="container" id="category-strip-list"></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div>
+        <span class="hero-eyebrow">100% Cash on Delivery</span>
+        <h1>Shop with confidence. Pay only when it arrives.</h1>
+        <p>Browse quality products at honest prices. No online payment, no hidden charges — just place your order and pay the rider in cash on delivery.</p>
+        <div class="hero-actions">
+          <a href="products.html" class="btn btn-primary btn-lg">Shop Now</a>
+          <a href="#featured" class="btn btn-outline btn-lg">View Featured</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900" alt="Shopping bags with products">
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="feature-strip">
+      <div class="feature-item">
+        <span class="icon">💵</span>
+        <div><h4>Cash on Delivery</h4><p>Pay in cash when your order reaches you</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="icon">🚚</span>
+        <div><h4>Nationwide Delivery</h4><p>We ship to every city and town</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="icon">↩️</span>
+        <div><h4>Easy Returns</h4><p>Hassle-free return on eligible items</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="icon">💬</span>
+        <div><h4>WhatsApp Support</h4><p>Order help, one message away</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="featured">
+    <div class="section-head">
+      <div>
+        <h2>Featured Products</h2>
+        <p>Hand-picked items our customers love the most.</p>
+      </div>
+      <a href="products.html">View all products</a>
+    </div>
+    <div class="product-grid" id="featured-grid">
+      <p class="loading-text">Loading featured products…</p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-head">
+      <div>
+        <h2>New Arrivals</h2>
+        <p>Fresh additions to our catalog.</p>
+      </div>
+      <a href="products.html">View all products</a>
+    </div>
+    <div class="product-grid" id="new-grid">
+      <p class="loading-text">Loading products…</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4 data-cfg="storeName">My Store</h4>
+        <p>Quality products, delivered to your door with Cash on Delivery — pay only when you receive your order.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul class="footer-links">
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="index.html#featured">Featured</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="shipping-info.html">Shipping Info</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="footer-year"></span> <span data-cfg="storeName">My Store</span>. All rights reserved.
+    </div>
+  </div>
+</footer>
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+<div class="toast" id="toast"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const products = await Api.getProducts();
+
+    const featuredGrid = document.getElementById("featured-grid");
+    const featured = products.filter(p => p.featured);
+    featuredGrid.innerHTML = featured.length
+      ? featured.map(productCardHTML).join("")
+      : `<p class="loading-text">No featured products yet.</p>`;
+    wireAddToCartButtons(featuredGrid, products);
+
+    const newGrid = document.getElementById("new-grid");
+    const newest = [...products].slice(-8).reverse();
+    newGrid.innerHTML = newest.length
+      ? newest.map(productCardHTML).join("")
+      : `<p class="loading-text">No products yet.</p>`;
+    wireAddToCartButtons(newGrid, products);
+  });
+</script>
+</body>
+</html>

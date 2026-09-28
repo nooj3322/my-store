@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — My Store</title>
+<meta name="description" content="Your order has been placed successfully.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="index.html" class="logo" id="logo-link">My Store</a>
+  </div>
+</header>
+
+<main class="container">
+  <div id="confirm-content">
+    <div class="confirm-box">
+      <p class="loading-text">Loading…</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      &copy; <span id="footer-year"></span> <span data-cfg="storeName">My Store</span>. All rights reserved.
+    </div>
+  </div>
+</footer>
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const raw = sessionStorage.getItem("lastOrder");
+    const content = document.getElementById("confirm-content");
+
+    if (!raw) {
+      content.innerHTML = `
+        <div class="confirm-box">
+          <div class="confirm-icon">🧾</div>
+          <h1>No recent order found</h1>
+          <p>It looks like you haven't placed an order in this session.</p>
+          <a href="products.html" class="btn btn-primary btn-lg" style="margin-top:10px">Start Shopping</a>
+        </div>`;
+      return;
+    }
+
+    const order = JSON.parse(raw);
+    const itemsHTML = order.items.map(i => `
+      <div class="summary-row"><span>${i.name} × ${i.qty}</span><span>${formatPrice(i.price * i.qty)}</span></div>
+    `).join("");
+
+    content.innerHTML = `
+      <div class="confirm-box">
+        <div class="confirm-icon">✅</div>
+        <h1>Order Placed Successfully!</h1>
+        <p>Thank you, ${order.fullName}. We've received your order and will contact you shortly to confirm delivery.</p>
+
+        <div class="order-number-box">
+          <div class="label">YOUR ORDER NUMBER</div>
+          <div class="value">${order.orderNumber}</div>
+        </div>
+
+        <div style="text-align:left; margin:24px 0">
+          <h4 style="margin-bottom:10px">Order Summary</h4>
+          ${itemsHTML}
+          <div class="summary-row" style="border-top:1px solid var(--color-border); padding-top:10px; margin-top:6px"><span>Subtotal</span><span>${formatPrice(order.subtotal)}</span></div>
+          <div class="summary-row"><span>Shipping</span><span>${order.shipping === 0 ? "Free" : formatPrice(order.shipping)}</span></div>
+          <div class="summary-row total"><span>Total (Cash on Delivery)</span><span>${formatPrice(order.total)}</span></div>
+        </div>
+
+        <div style="text-align:left; background:var(--color-background); border-radius:var(--radius-sm); padding:16px; margin-bottom:24px; font-size:.9rem; color:var(--color-textMuted)">
+          <strong style="color:var(--color-text)">Delivering to:</strong><br>
+          ${order.address}, ${order.city}, ${order.province} ${order.postalCode || ""}<br>
+          📞 ${order.mobile}
+        </div>
+
+        <a href="products.html" class="btn btn-primary btn-lg btn-block">Continue Shopping</a>
+      </div>
+    `;
+
+    sessionStorage.removeItem("lastOrder");
+  });
+</script>
+</body>
+</html>

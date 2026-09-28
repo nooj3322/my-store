@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipping Information — My Store</title>
+<meta name="description" content="Learn about My Store's delivery timelines, shipping charges, and Cash on Delivery process.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="index.html" class="logo" id="logo-link">My Store</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-link">🛒 Cart <span class="cart-count" id="cart-count">0</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container"><h1>Shipping Information</h1></div>
+</div>
+
+<main class="container section prose" style="max-width:760px">
+  <h2>Delivery Areas</h2>
+  <p>We currently deliver to all major cities and most towns nationwide. If you're unsure whether we deliver to your area, message us on WhatsApp before ordering and we'll confirm right away.</p>
+
+  <h2>Delivery Timeline</h2>
+  <ul>
+    <li><strong>Major cities:</strong> 2–3 working days</li>
+    <li><strong>Other cities/towns:</strong> 3–5 working days</li>
+  </ul>
+  <p>Timelines are estimates and may vary slightly due to weather, courier delays, or public holidays.</p>
+
+  <h2>Shipping Charges</h2>
+  <p id="shipping-charges-text">A flat delivery charge applies to each order, shown clearly at checkout before you place your order.</p>
+
+  <h2>Cash on Delivery Process</h2>
+  <ol style="padding-left:20px; color:var(--color-textMuted)">
+    <li>Place your order and receive your order number instantly.</li>
+    <li>We may call or WhatsApp you to confirm your order details.</li>
+    <li>Your order is packed and handed to our delivery partner.</li>
+    <li>The rider delivers your order to your address — inspect it and pay in cash.</li>
+  </ol>
+
+  <h2>Order Tracking</h2>
+  <p>For order status updates, simply message us on WhatsApp with your order number and we'll update you right away.</p>
+
+  <h2>Failed Delivery Attempts</h2>
+  <p>If our rider is unable to reach you at the provided address or phone number, we will attempt to contact you to reschedule delivery. Please ensure your mobile number and address are accurate at checkout.</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      &copy; <span id="footer-year"></span> <span data-cfg="storeName">My Store</span>. All rights reserved.
+    </div>
+  </div>
+</footer>
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const fee = STORE_CONFIG.shippingFee;
+    const freeOver = STORE_CONFIG.freeShippingOver;
+    let text = `A flat delivery charge of ${STORE_CONFIG.currencySymbol} ${fee} applies to each order.`;
+    if (freeOver > 0) text += ` Orders above ${STORE_CONFIG.currencySymbol} ${freeOver} qualify for free delivery.`;
+    document.getElementById("shipping-charges-text").textContent = text;
+  });
+</script>
+</body>
+</html>
